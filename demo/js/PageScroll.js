@@ -1,13 +1,13 @@
 /**
  * jQuery PageScroll 
- * Version 0.2.2
+ * Version 0.3.2
  *
- * https://github.com/javion25/PageScroll
+ * https://github.com/javion25/PageScroll.js
  * MIT licensed
  *
  * Copyright (C) 2015 Javion.com - A project by Javion
  */
-;(function ($,window,document,undefined){
+;(function($,window,document,undefined){
 	/*说明：获取浏览器前缀*/
 	/*实现：判断某个元素的css样式中是否存在transition属性*/
 	/*参数：dom元素*/
@@ -46,9 +46,9 @@
 				me.direction = me.settings.direction == "vertical" ? true:false;
 				me.pagesCount = me.pagesCount();
 				me.index = (me.settings.index>=0 && me.settings.index < me.pagesCount)? me.settings.index : 0;
+				//内页滚动标识位
 				me.index2 = 0;
 				me.canScroll = true;
-
 				  
 				if(!me.direction){
 					me._initLayout();
@@ -128,10 +128,6 @@
 					nextClass = me.selectors.controlNext.substring(1),
 					controlHtml = "<a class="+prevClass+">&lt;</a>";
 					controlHtml += "<a class="+nextClass+">&gt;</a>";
-		 			me.element.on("mouseover",me.selectors.sections,function(){
-		 				$('.control-prev').css("top",me.insection.parent().index()*100+50+"%");
-		 				$('.control-next').css("top",me.insection.parent().index()*100+50+"%");
-		 			});
 					me.insection.parent().append(controlHtml);
 			},
 			/*说明：主要针对横屏情况进行页面布局*/
@@ -168,12 +164,16 @@
 			_initEvent : function(){
 				var me = this;
 
+				me.element.on("mouseover",me.selectors.sections,function(){
+					$(me.selectors.controlPrev).css("top",me.insection.parent().index()*100+50+"%");
+					$(me.selectors.controlNext).css("top",me.insection.parent().index()*100+50+"%");
+				});
+
 				me.element.on("click",me.selectors.controlPrev,function(){
 					me.in_prev();
 				})
 
 				me.element.on("click",me.selectors.controlNext,function(){
-
 					me.in_next();
 				})
 
@@ -278,6 +278,7 @@
 		return PageScroll;
 	})();
 
+
 	//在插件中使用PageScroll对象
 	$.fn.PageScroll = function(options){
 		//return this 返回当前对象，来维护插件的链式调用
@@ -285,6 +286,7 @@
 		return this.each(function(){
 			var me = $(this),
 				instance = me.data("PageScroll");
+
 			//如果实例存在则不再重新创建实例
 			//利用data()来存放插件对象的实例
 			if(!instance){
