@@ -5,7 +5,7 @@
  * https://github.com/javion25/PageScroll.js
  * MIT licensed
  *
- * Copyright (C) 2015 Javion.com - A project by Javion
+ * Copyright (C) 2015 Javion.me - A project by Javion
  */
 ;(function($,window,document,undefined){
 	/*说明：获取浏览器前缀*/
@@ -36,35 +36,34 @@
 			/*说明：初始化插件*/
 			/*实现：初始化dom结构，布局，分页及绑定事件*/
 			init : function(){
-				var me = this;
-				me.selectors = me.settings.selectors;
-				me.sections = me.element.find(me.selectors.sections);
-				me.section = me.sections.find(me.selectors.section);
-				me.insection = me.element.find(me.selectors.insection);
-				me.controlPrev = me.insection.find(me.selectors.controlPrev);
-				me.controlNext = me.insection.find(me.selectors.controlNext);
-				me.direction = me.settings.direction == "vertical" ? true:false;
-				me.pagesCount = me.pagesCount();
-				me.index = (me.settings.index>=0 && me.settings.index < me.pagesCount)? me.settings.index : 0;
+				this.selectors = this.settings.selectors;
+				this.sections = this.element.find(this.selectors.sections);
+				this.section = this.sections.find(this.selectors.section);
+				this.insection = this.element.find(this.selectors.insection);
+				this.controlPrev = this.insection.find(this.selectors.controlPrev);
+				this.controlNext = this.insection.find(this.selectors.controlNext);
+				this.direction = this.settings.direction == "vertical" ? true:false;
+				this.pagesCount = this.pagesCount();
+				this.index = (this.settings.index>=0 && this.settings.index < this.pagesCount)? this.settings.index : 0;
 				//内页滚动标识位
-				me.index2 = 0;
-				me.canScroll = true;
+				this.index2 = 0;
+				this.canScroll = true;
 				  
-				if(!me.direction){
-					me._initLayout();
-				}else if(me.insection && ($(me.insection).length)){
-					me._initInside();
+				if(!this.direction){
+					this._initLayout();
+				}else if(this.insection && ($(this.insection).length)){
+					this._initInside();
 				}
 
-				if (me.settings.pagination) {
-					me._initPaging();
+				if (this.settings.pagination) {
+					this._initPaging();
 				}
 
-				if(me.index>0){
-					me._scrollPage();
+				if(this.index>0){
+					this._scrollPage();
 				}
 
-				me._initEvent();
+				this._initEvent();
 			},
 			/*说明：获取滚动页面数量*/
 			pagesCount : function(){
@@ -76,85 +75,80 @@
 			},
 			/*说明：向前滚动即上一页面*/
 			prev : function(){
-				var me = this;
-				if(me.index > 0){
-					me.index --;
-				}else if(me.settings.loop){
-					me.index = me.pagesCount - 1;
+				if(this.index > 0){
+					this.index --;
+				}else if(this.settings.loop){
+					this.index = me.pagesCount - 1;
 				}
-				me._scrollPage();
+				this._scrollPage();
 			},
 			/*说明：向后滚动即下一页面*/
 			next : function(){
-				var me = this;
-				if(me.index < me.pagesCount){
-					me.index ++;
-				}else if(me.settings.loop){
-					me.index = 0;
+				if(this.index < this.pagesCount){
+					this.index ++;
+				}else if(this.settings.loop){
+					this.index = 0;
 				}
-				me._scrollPage();
+				this._scrollPage();
 			},
 			/*说明：内页向前滚动即上一页面*/
 			in_prev : function(){
-				var me = this;
-				if(me.index2 > 0){
-					me.index2 --;
-				}else if(me.settings.loop){
-					me.index2 = me.insection.length - 1;
+				if(this.index2 > 0){
+					this.index2 --;
+				}else if(this.settings.loop){
+					this.index2 = me.insection.length - 1;
 				}
-				me._inscrollPage();
+				this._inscrollPage();
 			},
 			/*说明：内页向后滚动即下一页面*/
 			in_next : function(){
-				var me = this;
-				if(me.index2 < me.insection.length){
-					me.index2 ++;
-				}else if(me.settings.loop){
-					me.index2 = 0;
+				if(this.index2 < this.insection.length){
+					this.index2 ++;
+				}else if(this.settings.loop){
+					this.index2 = 0;
 				}
-				me._inscrollPage();
+				this._inscrollPage();
 			},
 			ScrollLength : function(){
 				return this.direction ? this.element.height() : this.element.width();
 			},
 			/*说明：针对竖屏情况进行页面内层布局*/
 			_initInside : function(){
-				var me = this;
-				var	width = (me.insection.length*100) + "%", 
-					cellWidth = (100/me.insection.length).toFixed(2)+"%";
-					me.insection.parent().width(width);
-					me.insection.width(cellWidth).css("float","left");
-				var	prevClass = me.selectors.controlPrev.substring(1),
-					nextClass = me.selectors.controlNext.substring(1),
+				var	width = (this.insection.length*100) + "%",
+					cellWidth = (100/this.insection.length).toFixed(2)+"%",
+					prevClass = this.selectors.controlPrev.substring(1),
+					nextClass = this.selectors.controlNext.substring(1),
+					
 					controlHtml = "<a class="+prevClass+">&lt;</a>";
 					controlHtml += "<a class="+nextClass+">&gt;</a>";
-					me.insection.parent().append(controlHtml);
+					
+					this.insection.parent().width(width);
+					this.insection.width(cellWidth).css("float","left");
+					this.insection.parent().append(controlHtml);
 			},
 			/*说明：主要针对横屏情况进行页面布局*/
 			_initLayout : function(){
-				var me = this;
-				var width = (me.pagesCount*100) + "%",
-					cellWidth = (100/me.pagesCount).toFixed(2)+"%";
-					me.sections.width(width);
-					me.section.width(cellWidth).css("float","left");
+				var width = (this.pagesCount*100) + "%",
+					cellWidth = (100/this.pagesCount).toFixed(2)+"%";
+					this.sections.width(width);
+					this.section.width(cellWidth).css("float","left");
 			},
 			/*说明：实现分页的dom结构及css样式*/
 			_initPaging : function(){ 
-				var me = this;
-					pagesClass = me.selectors.page.substring(1),
-				me.activeClass = me.selectors.active.substring(1);
-				var pageHtml = "<ul class="+pagesClass+">";
-				for(var i=0;i<me.pagesCount;i++){
+				this.pagesClass = this.selectors.page.substring(1),
+				this.activeClass = this.selectors.active.substring(1),
+				pageHtml = "<ul class="+this.pagesClass+">";
+				for(var i=0;i<this.pagesCount;i++){
 					pageHtml +="<li></li>";
 				}
 				pageHtml+="</ul>"; 
-				me.element.append(pageHtml);
+				this.element.append(pageHtml);
 
-				var pages = me.element.find(me.selectors.page);
-				me.pageItem = pages.find("li");
-				me.pageItem.eq(me.index).addClass(me.activeClass);
+				var pages = this.element.find(this.selectors.page);
+				this.pageItem = pages.find("li");
+				this.pageItem.eq(this.index).addClass(this.activeClass);
 				
-				if(me.direction) {
+				if(this.direction) {
 					pages.addClass("vertical");
 				}else{
 					pages.addClass("horizontal");
