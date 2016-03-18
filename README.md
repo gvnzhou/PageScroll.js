@@ -4,7 +4,7 @@ A jQuery plugin that assists scrolling the full page.
 ## Demo
 
 
-* http://javion25.github.io/PageScroll/demo/demo.html
+* http://javion25.github.io/PageScroll.js/demo/demo.html
 
 ## Quick start
 
