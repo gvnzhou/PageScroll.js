@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PageScroll-Demo</title>
+	<link rel="stylesheet" href="css/pagescroll.css">
+</head>
+<body>
+<div id="container">
+	<div class="sections">
+		<div class="section section-1">
+			<h3>the First section</h3>
+		</div>
+		<div class="section section-2">
+			<div class="insection insection-1">
+				<h3>the Second section-1</h3>
+			</div>
+			<div class="insection insection-2">
+				<h3>the Second section-2</h3>
+			</div>
+			<div class="insection insection-3">
+				<h3>the Second section-3</h3>
+			</div>
+		</div>
+		<div class="section section-3">
+			<h3>the Third section</h3>
+		</div>
+		<div class="section section-4">the Fifth section</div>
+	</div>
+</div>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/PageScroll.js"></script>
+	<script type="text/javascript">
+	//插件初始化
+	$("#container").PageScroll({
+		//html结构
+		selectors : {
+			sections : ".sections",
+			section : ".section",
+			insection : ".insection",
+			page : ".pages",
+			active : ".active",
+			controlPrev : ".control-prev",
+			controlNext : ".control-next"
+		},
+		//页面开始的索引值,默认为0,从0开始记数
+		index : 0,	
+		//动画效果，5种：默认为ease,linear,ease-in,ease-out,ease-in-out
+		easing : "ease",		
+		//动画时间，单位毫秒 
+		duration : 500,
+		//是否循环播放
+		loop : false,
+		//是否进行分页处理
+		pagination : true,
+		//是否触发键盘事件
+		keyboard :true,
+		//滚动方式，默认竖屏滚动，横屏滚动为horizontal
+		direction : "vertical",
+		//动画执行后执行的回调函数
+		callback : ""
+	});
+	//$("#container").PageScroll("init");
+	</script>
+</body>
+</html>

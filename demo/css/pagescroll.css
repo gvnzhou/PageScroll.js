@@ -1,0 +1,107 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+#container,.sections{
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+.section{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: white;
+	font-size: 40px;
+	font-family: "microsoft yahei",Simsun,Tahoma;
+	position: relative;
+}
+.section-1{
+	background-color: #6600CC;
+}
+.section-2{
+	background-color: #FFCC00;
+}
+.section-3{
+	background-color: #000000;
+}
+.section-4{
+	background-color: #CC0000;
+}
+.insection{
+	height: 100%;
+}
+.insection-1{
+	background-color: #FFCC00;
+}
+.insection-2{
+	background-color: #6599FF;
+}
+.insection-3{
+	background-color: #FF9900;
+}
+.control-prev{
+	font-size: 60px;
+	position: fixed;
+	top:250%;
+	left: 50px;
+	cursor: pointer;
+}
+.control-next{
+	font-size: 60px;
+	position: fixed;
+	top: 250%;
+	right: 50px;
+	cursor: pointer;
+}
+.horizontal{
+	width: 82px;
+	position:fixed;
+	list-style: none;
+	margin:auto;
+	left:0;
+	right:0;
+	bottom: 15px;
+}
+.horizontal > li{
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #fff;
+	margin: 0px 10px 0 0;
+	float: left;
+}
+.horizontal > li.active{
+	width: 14px;
+	height: 14px;
+	border: 2px solid #FFFE00;
+	background: none;
+	margin-top: -5px;
+}
+
+.vertical{
+	position:fixed;
+	list-style: none;
+	right: 10px;
+	top: 50%;
+}
+.vertical > li{
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #fff;
+	margin: 0 0 10px 5px;
+}
+.vertical > li.active{
+	width: 14px;
+	height: 14px;
+	border: 2px solid #FFFE00;
+	background: none;
+	margin-left: 0;
+}
