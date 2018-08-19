@@ -14,7 +14,7 @@ include the files
 <script src="jquery.min.js"></script>
 <script src="PageScroll.min.js"></script>
 ```
-call the the plugin on a container as your wish
+call the plugin on a container as you wish
 ```js
 $("#container").PageScroll();
 ```
@@ -23,9 +23,9 @@ All done!
 ## Options
 
 
-you can custom the caption by passing options when call the plugin, all available options are listed below.
+you can customize the caption by passing options when calling the plugin, all available options are listed below.
 
-call the the plugin on a container wish you wish
+call the plugin on a container as you wish
 ```js
 $("#container").PageScroll({
     option: value,
@@ -40,9 +40,9 @@ $("#container").PageScroll({
 | index           | `0`           | Define the start section. | 
 | easing          | `'ease'`      | Define the easing method. | 
 | duration        | `500`         | Speed in milliseconds for the scrolling transitions.  | 
-| loop            | `false`       | A boolean to define whether support loop.    | 
-| pagination      | `true`        | A boolean to define whether support pagination.   | 
-| keyboard        | `true`        | A boolean to define whether support keyboard.     | 
+| loop            | `false`       | A boolean to define whether it supports a loop.    | 
+| pagination      | `true`        | A boolean to define whether it supports pagination.   | 
+| keyboard        | `true`        | A boolean to define whether it supports the keyboard.     | 
 | direction       | `'vertical'`  | Define the scrolling direction.    | 
 | callback        | `function(){}`          | A callback that is called after a new section is scrolled to. Arguments include the index of the section and an array of all section elements.        | 
 
